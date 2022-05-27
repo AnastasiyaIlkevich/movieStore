@@ -1,4 +1,4 @@
-package com.movieStore.movieStore;
+package com.movieStore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
