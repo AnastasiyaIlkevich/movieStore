@@ -37,7 +37,12 @@ public class UserMovie {
     private Timestamp createdTimestamp;
     @Column(name = "updated_timestamp")
     private Timestamp modifiedTimestamp;
-
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @PreUpdate
     public void preUpdate() {
         modifiedTimestamp = new Timestamp(Instant.now().toEpochMilli());
