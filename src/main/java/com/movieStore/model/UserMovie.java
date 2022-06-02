@@ -17,7 +17,7 @@ import java.time.Instant;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "user_movie")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +25,8 @@ import java.time.Instant;
 public class UserMovie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Enumerated
     private Status status;
