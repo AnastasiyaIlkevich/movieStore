@@ -3,6 +3,7 @@ package com.movieStore.controller;
 import com.movieStore.model.User;
 import com.movieStore.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class UserController {
 
     private final AbstractService abstractService;
     @Autowired
-    public UserController(AbstractService abstractService) {
+    public UserController(@Qualifier("UserService")AbstractService abstractService) {
         this.abstractService = abstractService;
     }
 
