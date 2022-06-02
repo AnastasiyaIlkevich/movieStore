@@ -1,7 +1,9 @@
 package com.movieStore.service;
 
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public interface AbstractService<T, V, S> {
 
     List<T> getAll();

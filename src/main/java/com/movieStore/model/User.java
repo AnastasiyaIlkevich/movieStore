@@ -24,10 +24,11 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column (name = "username")
-    private String userName;
+    private String username;
     @Column (name = "email")
     private String email;
     @Column (name = "password")
@@ -42,11 +43,6 @@ public class User {
     @ToString.Exclude
     private Set<Role> roles;
 
-
-
-
-
-
-
-
+    @OneToMany(mappedBy = "user")
+    private Set<UserMovie> userMovies;
 }
