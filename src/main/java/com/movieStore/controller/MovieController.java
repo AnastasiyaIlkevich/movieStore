@@ -42,7 +42,6 @@ public class MovieController {
 
     @PutMapping("/{id}")
     public Movie updateMovie(@PathVariable("id") Long id, @RequestBody Movie movie) {
-        movie.setId(id);
         return (Movie) abstractService.update(movie);
     }
 

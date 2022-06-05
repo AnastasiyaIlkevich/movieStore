@@ -43,7 +43,6 @@ public class UserMovieController {
 
     @PutMapping("/{id}")
     public UserMovie updateUserMovie(@PathVariable("id") Long id, @RequestBody UserMovie userMovie) {
-        userMovie.setId(id);
         return userMovieService.update(userMovie);
     }
 
