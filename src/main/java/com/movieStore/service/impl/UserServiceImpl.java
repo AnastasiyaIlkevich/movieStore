@@ -6,6 +6,7 @@ import com.movieStore.repository.RoleRepository;
 import com.movieStore.repository.UserRepository;
 import com.movieStore.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 @Transactional
-@Service
+@Component("UserService")
 public class UserServiceImpl implements AbstractService<User, Long, String> {
 
     private final UserRepository userRepository;
