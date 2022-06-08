@@ -19,22 +19,24 @@ import lombok.Setter;
 @Getter
 public class GenreDtoUpdate {
 
+    private Long id;
     private String name;
-    @JsonProperty("id")
+    @JsonProperty("external_id")
     private Long externalId;
 
     public Genre toGenre() {
         Genre genre = new Genre();
-        genre.setExternalId(getExternalId());
-        genre.setName(getName());
+        genre.setId(id);
+        genre.setExternalId(externalId);
+        genre.setName(name);
         return genre;
     }
 
     public GenreDtoUpdate fromGenre(Genre genre) {
         GenreDtoUpdate genreDto = new GenreDtoUpdate();
+        genreDto.setId(genre.getId());
         genreDto.setExternalId(genre.getExternalId());
         genreDto.setName(genre.getName());
         return genreDto;
     }
-
 }
