@@ -1,7 +1,6 @@
 package com.movieStore.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.movieStore.model.Genre;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,13 +20,10 @@ public class GenreDtoUpdate {
 
     private Long id;
     private String name;
-    @JsonProperty("external_id")
-    private Long externalId;
 
     public Genre toGenre() {
         Genre genre = new Genre();
         genre.setId(id);
-        genre.setExternalId(externalId);
         genre.setName(name);
         return genre;
     }
@@ -35,7 +31,6 @@ public class GenreDtoUpdate {
     public GenreDtoUpdate fromGenre(Genre genre) {
         GenreDtoUpdate genreDto = new GenreDtoUpdate();
         genreDto.setId(genre.getId());
-        genreDto.setExternalId(genre.getExternalId());
         genreDto.setName(genre.getName());
         return genreDto;
     }
