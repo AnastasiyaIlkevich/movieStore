@@ -1,5 +1,6 @@
 package com.movieStore.controller;
 
+import com.movieStore.dto.UserDtoUpdate;
 import com.movieStore.model.User;
 import com.movieStore.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,10 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
-        user.setId(id);
-        return (User) abstractService.update(user);
+    public UserDtoUpdate updateUser(@PathVariable("id") Long id, @RequestBody UserDtoUpdate userDto) {
+        userDto.setId(id);
+        User user = userDto.toUser();
+        return  userDto.fromUser((User) abstractService.update(user));
     }
 
     @DeleteMapping("/{id}")

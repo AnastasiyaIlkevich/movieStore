@@ -1,5 +1,6 @@
 package com.movieStore.controller;
 
+import com.movieStore.dto.RoleDtoUpdate;
 import com.movieStore.model.Role;
 import com.movieStore.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class RoleController {
         this.abstractService = abstractService;
     }
 
-
     @GetMapping
     public List<Role> getAllRoles() {
         return abstractService.getAll();
@@ -42,9 +42,10 @@ public class RoleController {
     }
 
     @PutMapping("/{id}")
-    public Role updateRole(@PathVariable("id") Long id, @RequestBody Role role) {
-        role.setId(id);
-        return (Role) abstractService.update(role);
+    public RoleDtoUpdate updateRole(@PathVariable("id") Long id, @RequestBody RoleDtoUpdate roleDto) {
+        roleDto.setId(id);
+        Role role = roleDto.toRole();
+        return roleDto.fromRole((Role) abstractService.update(role));
     }
 
     @DeleteMapping("/{id}")
