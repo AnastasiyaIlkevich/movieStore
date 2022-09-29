@@ -14,6 +14,8 @@ __MovieStore__ – сервис для поиска фильмов. Которы
   - Liquibase
   
 - В планах:
+  - JUnit
+  - Swagger
   - Spring Security
   - ELK stack
   
