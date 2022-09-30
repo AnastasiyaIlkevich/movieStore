@@ -11,8 +11,8 @@ import java.util.Set;
 /**
  * An object representing the Movie
  *
- * @version 1.0
  * @author Ilkevich Anastasiya
+ * @version 1.0
  */
 
 @Entity
@@ -24,7 +24,7 @@ import java.util.Set;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "adult")
     private boolean adult;
@@ -44,7 +44,7 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres;
 
-    @OneToMany(mappedBy="movie", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.DETACH)
     private Set<UserMovie> userMovie;
 
 }

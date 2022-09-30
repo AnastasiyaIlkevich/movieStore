@@ -1,5 +1,6 @@
 package com.movieStore.controller;
 
+import com.movieStore.dto.GenreDtoUpdate;
 import com.movieStore.model.Genre;
 import com.movieStore.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,21 +34,23 @@ public class GenreController {
 
     @GetMapping("/{name}")
     public Genre getGenreByName(@PathVariable("name") String name) {
-        return (Genre)abstractService.find(name);
+        return (Genre) abstractService.find(name);
     }
 
     @PostMapping()
-    public void saveGenre(@RequestBody Genre genre){
+    public void saveGenre(@RequestBody Genre genre) {
         abstractService.save(genre);
     }
 
     @PutMapping("/{id}")
-    public Genre updateGenre(@PathVariable("id") Long id, @RequestBody Genre genre){
-        return (Genre)abstractService.update(genre);
+    public GenreDtoUpdate updateGenre(@PathVariable("id") Long id, @RequestBody GenreDtoUpdate genreDto) {
+        genreDto.setId(id);
+        Genre genre = genreDto.toGenre();
+        return genreDto.fromGenre((Genre) abstractService.update(genre));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteGenre(@PathVariable("id") Long id){
+    public void deleteGenre(@PathVariable("id") Long id) {
         abstractService.delete(id);
     }
 }

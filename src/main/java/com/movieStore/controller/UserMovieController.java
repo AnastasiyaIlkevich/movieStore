@@ -1,5 +1,6 @@
 package com.movieStore.controller;
 
+import com.movieStore.dto.UserMovieDtoUpdate;
 import com.movieStore.model.UserMovie;
 import com.movieStore.service.UserMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +43,14 @@ public class UserMovieController {
     }
 
     @PutMapping("/{id}")
-    public UserMovie updateUserMovie(@PathVariable("id") Long id, @RequestBody UserMovie userMovie) {
-        return userMovieService.update(userMovie);
+    public UserMovieDtoUpdate updateUserMovie(@PathVariable("id") Long id, @RequestBody UserMovieDtoUpdate userMovieDto) {
+        userMovieDto.setId(id);
+        UserMovie userMovie = userMovieDto.toUserMovie();
+        return userMovieDto.fromUserMovieDto(userMovieService.update(userMovie));
     }
 
     @DeleteMapping("/{id}")
     public void deleteUserMovie(@PathVariable("id") Long id) {
         userMovieService.delete(id);
     }
-
 }
