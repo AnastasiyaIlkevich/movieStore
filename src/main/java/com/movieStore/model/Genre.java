@@ -11,8 +11,8 @@ import java.util.Set;
 /**
  * An object representing the Genre
  *
- * @version 1.0
  * @author Ilkevich Anastasiya
+ * @version 1.0
  */
 
 @Entity
@@ -24,7 +24,7 @@ import java.util.Set;
 public class Genre {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;

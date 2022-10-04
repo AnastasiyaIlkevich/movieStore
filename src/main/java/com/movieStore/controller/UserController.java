@@ -1,6 +1,10 @@
 package com.movieStore.controller;
 
+import com.movieStore.dto.UserDtoUpdate;
 import com.movieStore.model.User;
+import com.movieStore.service.AbstractService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,29 +20,36 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    //need to create UserService
+    private final AbstractService abstractService;
+    @Autowired
+    public UserController(@Qualifier("UserService")AbstractService abstractService) {
+        this.abstractService = abstractService;
+    }
 
     @GetMapping
     private List<User> getAll() {
-        return null;
+       return abstractService.getAll();
     }
 
-    @GetMapping("/{Username}")
+    @GetMapping("/{username}")
     public User getUserByName(@PathVariable("username") String username) {
-        User user = new User();
-        return user;
+        return (User) abstractService.find(username);
     }
 
     @PostMapping()
     public void saveUser(@RequestBody User user) {
+        abstractService.save(user);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
-        return user;
+    public UserDtoUpdate updateUser(@PathVariable("id") Long id, @RequestBody UserDtoUpdate userDto) {
+        userDto.setId(id);
+        User user = userDto.toUser();
+        return  userDto.fromUser((User) abstractService.update(user));
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable("id") Long id) {
+        abstractService.delete(id);
     }
 }
