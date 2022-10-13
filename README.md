@@ -12,10 +12,10 @@ __MovieStore__ – сервис для поиска фильмов. Которы
   - Hibernate
   - PostgreSQL
   - Liquibase
+  - Swagger
   
 - В планах:
   - JUnit
-  - Swagger
   - Spring Security
   - ELK stack
   
